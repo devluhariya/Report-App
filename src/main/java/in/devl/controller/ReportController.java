@@ -18,33 +18,35 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ReportController {
 	@Autowired
 	private ReportService service;
-	
+
 	@GetMapping("/pdf")
-	public void pdfExport(HttpServletResponse response) throws Exception{
+	public void pdfExport(HttpServletResponse response) throws Exception {
 		response.setContentType("application/pdf");
 		response.addHeader("Content-Disposition", "attachment; filename=plans.pdf");
-		
-		service.exportPdf(response);
+		boolean status = service.exportPdf(response);
+
 	}
-	
+
 	@GetMapping("/excel")
-	public void excelExport(HttpServletResponse response) throws Exception{
+	public void excelExport(HttpServletResponse response) throws Exception {
 		response.setContentType("application/octet-stream");
 		response.addHeader("Content-Disposition", "attachment; filename=plans.xls");
-		
-		service.exportExcel(response);
+		boolean status = service.exportExcel(response);
+
 	}
 
 	@PostMapping("/search")
 	public String handleSearch(@ModelAttribute("search") SearchRequest request, Model model, SearchRequest search) {
-		
+
 		List<CitizenPlan> plans = service.search(search);
-		model.addAttribute("plans",plans);
+		model.addAttribute("plans", plans);
 		init(model);
 		return "index";
 	}
+
 	/**
 	 * This method is used Index page
+	 * 
 	 * @param model
 	 * @return String
 	 */
@@ -56,8 +58,8 @@ public class ReportController {
 	}
 
 	private void init(Model model) {
-		
+
 		model.addAttribute("names", service.getPlanName());
-		model.addAttribute("status",service.getPlanStatus());
+		model.addAttribute("status", service.getPlanStatus());
 	}
 }

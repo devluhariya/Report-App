@@ -52,7 +52,7 @@
 				</tr>
 
 			</table>
-
+			<p class="text-success">${msg}</p>
 		</form:form>
 
 
@@ -95,11 +95,10 @@
 		Export : <a href="excel"><button type="button"
 				class="btn btn-lg btn-outline-danger">
 				<i class="fa fa-bug"></i> Excel
+			</button></a> <a href="pdf"><button type="button"
+				class="btn btn-lg btn-outline-warning">
+				<i class="fa fa-file"></i>Pdf
 			</button></a>
-		<a href="pdf"><button type="button" class="btn btn-lg btn-outline-warning"
-			>
-			<i class="fa fa-file"></i>Pdf
-		</button></a>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
